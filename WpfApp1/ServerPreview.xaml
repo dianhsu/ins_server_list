@@ -41,6 +41,7 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
+        <Button x:Name="btn_fresh" Content="刷新" HorizontalAlignment="Left" Margin="262,8,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.186,-0.708" Click="btn_fresh_Click"/>
 
     </Grid>
 </Window>

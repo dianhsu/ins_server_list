@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{A0086BB0-40B2-4386-827C-4E9AF4110542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsurgencySandstomServer", "WpfApp1\InsurgencySandstomServer.csproj", "{A0086BB0-40B2-4386-827C-4E9AF4110542}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InsurgencySandstormInstaller", "InsurgencySandstormInstaller\InsurgencySandstormInstaller.vdproj", "{8B435B49-8A67-4C28-B752-2AE2BD188771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{A0086BB0-40B2-4386-827C-4E9AF4110542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0086BB0-40B2-4386-827C-4E9AF4110542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0086BB0-40B2-4386-827C-4E9AF4110542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B435B49-8A67-4C28-B752-2AE2BD188771}.Debug|Any CPU.ActiveCfg = Debug
+		{8B435B49-8A67-4C28-B752-2AE2BD188771}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

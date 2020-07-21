@@ -10,6 +10,7 @@ namespace WpfApp1
     {
         public static List<Tuple<string, ushort>> other = new List<Tuple<string, ushort>>()
         {
+            new Tuple<string, ushort>("192.168.50.2",27015),
             new Tuple<string, ushort>("47.102.192.130",27015),
             new Tuple<string, ushort>("134.175.62.172",27131),
             new Tuple<string, ushort>("119.188.247.66", 27201),

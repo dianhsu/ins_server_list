@@ -36,7 +36,7 @@ namespace WpfApp1
         private void UpdateDataGrid()
         {
             ThreadPool.SetMinThreads(1, 1);
-            ThreadPool.SetMaxThreads(5, 5);
+            ThreadPool.SetMaxThreads(8, 8);
             foreach (var item in server_config)
             {
                 ThreadPool.QueueUserWorkItem(_=>
@@ -57,6 +57,7 @@ namespace WpfApp1
                                 Port = tp.Item2,
                                 Ping = server_info.Ping
                             });
+                          
                             dataGrid.Items.Refresh();
                         }
                     });
@@ -101,7 +102,10 @@ namespace WpfApp1
                 {
                     var s = (ServerInfoPreview)this.dataGrid.SelectedItem;
                     ServerDetail serverDetail = new ServerDetail(s.Host, s.Port);
+                    serverDetail.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    serverDetail.Owner = this;
                     serverDetail.Show();
+                    
                 }
                 target = VisualTreeHelper.GetParent(target);
             }
@@ -119,6 +123,12 @@ namespace WpfApp1
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btn_fresh_Click(object sender, RoutedEventArgs e)
+        {
+            serverData.Clear();
+            UpdateDataGrid();
         }
     }
 }
