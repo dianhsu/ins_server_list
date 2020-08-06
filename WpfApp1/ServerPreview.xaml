@@ -11,9 +11,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <RadioButton x:Name="XiaoCao" Content="小草服务器" HorizontalAlignment="Left" Margin="94,10,0,0" VerticalAlignment="Top" IsEnabled="True" IsChecked="True" Checked="XiaoCao_Checked" Height="14" Width="79"/>
-        <RadioButton x:Name="TuanZi" Content="团子服务器" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="TuanZi_Checked" Height="14" Width="79" RenderTransformOrigin="-0.431,0.937"/>
-        <RadioButton x:Name="Other" Content="其他服务器" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="True" Checked="Other_Checked" Height="14" Width="79"/>
+        <RadioButton x:Name="XiaoCao" Content="小草服务器" HorizontalAlignment="Left" Margin="94,10,0,0" VerticalAlignment="Top" IsEnabled="True" Checked="XiaoCao_Checked" Height="14" Width="79"/>
+        <RadioButton x:Name="Other" Content="其他服务器" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="True" IsChecked="True" Checked="Other_Checked" Height="14" Width="79"/>
         <DataGrid x:Name="dataGrid" 
                   ColumnWidth="*" 
                   AutoGenerateColumns="False" 
@@ -41,8 +40,8 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="btn_fresh" Content="刷新" HorizontalAlignment="Left" Margin="262,8,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.186,-0.708" Click="btn_fresh_Click"/>
-        <Label x:Name="label" Content="双击条目查看详情，右击条目拷贝IP端口" HorizontalAlignment="Left" Margin="347,5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="437"/>
+        <Button x:Name="btn_fresh" Content="刷新" HorizontalAlignment="Left" Margin="178,6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.186,-0.708" Click="btn_fresh_Click"/>
+        <Label x:Name="label" Content="双击条目查看详情，右击条目拷贝IP端口" HorizontalAlignment="Left" Margin="253,3,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="437"/>
 
     </Grid>
 </Window>

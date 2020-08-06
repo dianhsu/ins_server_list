@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using QueryMaster.GameServer;
 using QueryMaster;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows.Threading;
-
+using System.Net.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace WpfApp1
 {
     /// <summary>
@@ -30,6 +25,31 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            if (ServerConfig.xiaocao_list.Count == 0)
+            {
+                ThreadPool.QueueUserWorkItem(_ => {
+                    HttpClient httpClient = new HttpClient();
+                    string url = string.Format("http://api.steampowered.com/ISteamApps/GetServersAtAddress/v0001?addr={0}&format=json",ServerConfig.xiaocao);
+                    Task<string> task0 = httpClient.GetStringAsync(url);
+                    task0.Wait();
+                    string sresult = task0.Result;
+                    JObject jObject = JObject.Parse(sresult);
+                    try
+                    {
+                        JArray jArray = (JArray)jObject["response"]["servers"];
+
+                        foreach (JToken item in jArray)
+                        {
+                            string addr = item["addr"].ToString();
+                            var ip_port = addr.Split(':');
+                            ServerConfig.xiaocao_list.Add(new Tuple<string, ushort>(ip_port[0], (ushort)int.Parse(ip_port[1])));
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                });
+            }
             dataGrid.DataContext = serverData;
            
         }
@@ -41,9 +61,9 @@ namespace WpfApp1
             {
                 ThreadPool.QueueUserWorkItem(_=>
                 {
-                    Tuple<string, ushort> tp = item;
+                    Tuple<string, ushort> tp = item;                    
                     Server server = ServerQuery.GetServerInstance(EngineType.Source, tp.Item1, tp.Item2, false, 1000, 1000);
-                    var server_info = server.GetInfo();
+                    var server_info = server.GetInfo();                  
                     this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,(ThreadStart)delegate ()
                     {
                         if (server_info != null)
@@ -56,8 +76,7 @@ namespace WpfApp1
                                 Host = tp.Item1,
                                 Port = tp.Item2,
                                 Ping = server_info.Ping
-                            });
-                          
+                            }); ;
                             dataGrid.Items.Refresh();
                         }
                     });
@@ -72,19 +91,11 @@ namespace WpfApp1
             UpdateDataGrid();
         }
 
-        private void TuanZi_Checked(object sender, RoutedEventArgs e)
-        {
-            serverData.Clear();
-            server_config = ServerConfig.tuanzi;
-            UpdateDataGrid();
-        }
-
         private void XiaoCao_Checked(object sender, RoutedEventArgs e)
         {
             serverData.Clear();
-            server_config = ServerConfig.xiaocao;
+            server_config = ServerConfig.xiaocao_list;
             UpdateDataGrid();
-
         }
         
 
@@ -115,9 +126,9 @@ namespace WpfApp1
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var sip = (ServerInfoPreview)dataGrid.SelectedItem;
-            string copyText = string.Format("{0}:{1}", sip.Host, sip.Port);
+            string copyText = string.Format("{0}", sip.Host);
             Clipboard.SetText(copyText);
-            MessageBox.Show(string.Format("IP和端口已经复制到剪切板: {0}", copyText));
+            MessageBox.Show(string.Format("IP已经复制到剪切板: {0}", copyText));
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
