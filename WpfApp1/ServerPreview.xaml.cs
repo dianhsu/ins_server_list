@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using HiPerfMetrics;
 namespace WpfApp1
 {
     /// <summary>
@@ -55,6 +56,8 @@ namespace WpfApp1
         }
         private void UpdateDataGrid()
         {
+            var hiPerfMetric = new HiPerfMetric("UpdateDataGrid");
+            hiPerfMetric.Start();
             ThreadPool.SetMinThreads(1, 1);
             ThreadPool.SetMaxThreads(8, 8);
             foreach (var item in server_config)
@@ -82,6 +85,10 @@ namespace WpfApp1
                     });
                 });
             }
+            hiPerfMetric.Stop();
+            //var test = hiPerfMetric.TotalTimeInSeconds.ToString();
+            //TimeResult.Text = "ssss";
+            //ResultTimeText.Text = hiPerfMetric.TotalTimeInSeconds.ToString();
         }
 
         private void Other_Checked(object sender, RoutedEventArgs e)

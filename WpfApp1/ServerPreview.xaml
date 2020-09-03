@@ -41,7 +41,9 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <Button x:Name="btn_fresh" Content="刷新" HorizontalAlignment="Left" Margin="178,6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.186,-0.708" Click="btn_fresh_Click"/>
-        <Label x:Name="label" Content="双击条目查看详情，右击条目拷贝IP端口" HorizontalAlignment="Left" Margin="253,3,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="437"/>
+        <Label x:Name="label" Content="双击条目查看详情，右击条目拷贝IP端口" HorizontalAlignment="Left" Margin="253,3,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="228"/>
+        <Label Content="查询用时：" HorizontalAlignment="Left" Margin="119.2,3,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="TimeResult" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="190.2,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
